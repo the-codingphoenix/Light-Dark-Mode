@@ -84,12 +84,13 @@ const currentTheme = localStorage.getItem('theme');
 if (currentTheme) {
     document.documentElement.setAttribute('data-theme', currentTheme);
 
-    if(currentTheme === darkTheme) {
-        toggleSwitch.checked = true;
-        darkMode();
-    } else {
-        // If no theme is saved in local storage, default to light mode
-        document.documentElement.setAttribute('data-theme', lightTheme);
-        changeMode(false);
-    }
+    // Set the checkbox state based on the saved theme
+    toggleSwitch.checked = currentTheme === darkTheme;
+    
+    // Update the mode styles and images
+    changeMode(currentTheme === darkTheme);
+} else {
+    // If no theme is saved in local storage, default to light mode
+    document.documentElement.setAttribute('data-theme', lightTheme);
+    changeMode(false);
 }
